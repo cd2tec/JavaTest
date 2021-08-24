@@ -1,5 +1,5 @@
-# JavaTest
-Teste de seleção para vaga de Java
+# Teste de seleção para vaga de Java
+
 ## Faça um fork desse projeto e siga as instruções a seguir utilizando esse projeto.
 
 # Pré-requisitos
