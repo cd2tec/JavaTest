@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 public class FreteForm {
 
-	@NotNull @NotEmpty 
+	@NotNull 
 	private Double peso;
 	@NotNull @NotEmpty @Size(min = 8)
 	private String cepOrigem;

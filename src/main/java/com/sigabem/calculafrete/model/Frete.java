@@ -1,6 +1,5 @@
 package com.sigabem.calculafrete.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -24,7 +23,7 @@ public class Frete {
 	private String cepOrigem;
 	private String cepDestino;
     private String nomeDestinatario;
-    private BigDecimal vlTotalFrete;
+    private Double vlTotalFrete;
     private LocalDate dataPrevistaEntrega;
     private LocalDate dataConsulta;
 	

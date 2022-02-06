@@ -1,6 +1,5 @@
 package com.sigabem.calculafrete.controller.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.sigabem.calculafrete.model.Frete;
@@ -12,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class FreteDTO {
 	
-	private BigDecimal vlTotalFrete;
+	private Double vlTotalFrete;
     private LocalDate dataPrevistaEntrega;
 	private String cepOrigem;
 	private String cepDestino;
