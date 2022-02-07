@@ -28,7 +28,7 @@ public class FreteServiceImpl implements FreteService {
 	private final Double precoKg = 1.0;
 	
 	@Override
-	public Frete ConsultaValorFrete(FreteForm form) {
+	public Frete consultaValorFrete(FreteForm form) {
 		Frete frete = toFrete(form);
 		frete.setDataConsulta(LocalDate.now());
 		ViaCepDTO cepOrigem = service.buscaCep(frete.getCepOrigem());
@@ -41,7 +41,7 @@ public class FreteServiceImpl implements FreteService {
 		return modelMapper.map(form, Frete.class);
 	}
 	
-	private Frete calculaFreteData(ViaCepDTO cepOrigem, ViaCepDTO cepDestino, Frete frete) {
+	public Frete calculaFreteData(ViaCepDTO cepOrigem, ViaCepDTO cepDestino, Frete frete) {
 		frete.setVlTotalFrete(frete.getPeso() * precoKg);
 		frete.setDataPrevistaEntrega(LocalDate.now().plusDays(10));
 		

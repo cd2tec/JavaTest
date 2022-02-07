@@ -28,7 +28,7 @@ public class FreteController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<FreteDTO> recebeDados(@RequestBody @Valid FreteForm form, UriComponentsBuilder uriBuilder) {
-		Frete frete = service.ConsultaValorFrete(form);		
+		Frete frete = service.consultaValorFrete(form);		
 		URI uri = uriBuilder.path("/frete/{id}").buildAndExpand(frete.getId()).toUri();
 		return ResponseEntity.created(uri).body(new FreteDTO(frete));
 	}

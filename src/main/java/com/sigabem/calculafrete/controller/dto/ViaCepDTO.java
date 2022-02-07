@@ -9,6 +9,4 @@ public class ViaCepDTO {
 	private String cep;
     private String uf;
     private String ddd;
-
-
 }
