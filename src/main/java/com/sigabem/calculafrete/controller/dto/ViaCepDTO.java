@@ -7,7 +7,8 @@ import lombok.Setter;
 @Setter
 public class ViaCepDTO {
 	private String cep;
-	private String uf;
-	private String ddd;
+    private String uf;
+    private String ddd;
+
 
 }

@@ -8,6 +8,7 @@ import com.sigabem.calculafrete.controller.dto.ViaCepDTO;
 
 @FeignClient(url="https://viacep.com.br/ws/", name = "viacep")
 public interface ViaCepClient {
-    @GetMapping("{cep}/json")
+    
+	@GetMapping("{cep}/json")
     ViaCepDTO buscaCep(@PathVariable("cep") String cep);
 }

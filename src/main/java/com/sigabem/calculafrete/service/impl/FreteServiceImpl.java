@@ -11,7 +11,7 @@ import com.sigabem.calculafrete.controller.form.FreteForm;
 import com.sigabem.calculafrete.model.Frete;
 import com.sigabem.calculafrete.repository.FreteRepository;
 import com.sigabem.calculafrete.service.FreteService;
-import com.sigabem.calculafrete.service.ViaCepService;
+import com.sigabem.calculafrete.utils.ViaCepClient;
 
 @Service
 public class FreteServiceImpl implements FreteService {
@@ -22,7 +22,8 @@ public class FreteServiceImpl implements FreteService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	private ViaCepService service;
+	@Autowired
+	private ViaCepClient service;
 	
 	private final Double precoKg = 1.0;
 	
@@ -30,8 +31,8 @@ public class FreteServiceImpl implements FreteService {
 	public Frete ConsultaValorFrete(FreteForm form) {
 		Frete frete = toFrete(form);
 		frete.setDataConsulta(LocalDate.now());
-		ViaCepDTO cepOrigem = service.buscaPorCep(frete.getCepOrigem());
-		ViaCepDTO cepDestino = service.buscaPorCep(frete.getCepDestino());
+		ViaCepDTO cepOrigem = service.buscaCep(frete.getCepOrigem());
+		ViaCepDTO cepDestino = service.buscaCep(frete.getCepDestino());
 		frete = calculaFreteData(cepOrigem, cepDestino, frete);
 		return repository.save(frete);
 	}
@@ -44,14 +45,14 @@ public class FreteServiceImpl implements FreteService {
 		frete.setVlTotalFrete(frete.getPeso() * precoKg);
 		frete.setDataPrevistaEntrega(LocalDate.now().plusDays(10));
 		
-		if (cepOrigem.getDdd() == cepDestino.getDdd()) {
+		if (cepOrigem.getDdd().equals(cepDestino.getDdd())) {
 			frete.setVlTotalFrete((frete.getPeso() * precoKg)*0.5);
 			frete.setDataPrevistaEntrega(LocalDate.now().plusDays(1));
 			return frete;
 		}
 		
-		if (cepOrigem.getDdd() != cepDestino.getDdd() && cepOrigem.getUf() == cepDestino.getUf()) {
-			frete.setVlTotalFrete((frete.getPeso() * precoKg)*0.75);
+		if (!cepOrigem.getDdd().equals(cepDestino.getDdd()) && cepOrigem.getUf().equals(cepDestino.getUf())) {
+			frete.setVlTotalFrete((frete.getPeso() * precoKg)*0.25);
 			frete.setDataPrevistaEntrega(LocalDate.now().plusDays(3));
 			return frete;
 		}
