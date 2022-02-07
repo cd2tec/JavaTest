@@ -1,4 +1,4 @@
-package java.teste.sigabem;
+package teste.sigabem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
