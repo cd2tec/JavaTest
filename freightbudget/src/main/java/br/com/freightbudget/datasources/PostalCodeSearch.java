@@ -7,9 +7,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-import org.json.JSONException;
 
 @Service
 public class PostalCodeSearch {
@@ -31,11 +29,9 @@ public class PostalCodeSearch {
 					  .send(request, HttpResponse.BodyHandlers.ofString());
 			resp = response.body();
 		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		catch (IOException | InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return resp;

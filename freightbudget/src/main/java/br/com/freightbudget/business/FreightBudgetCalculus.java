@@ -3,13 +3,13 @@ package br.com.freightbudget.business;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import br.com.freightbudget.datasources.Freight;
+import br.com.freightbudget.basic.Freight;
 import br.com.freightbudget.datasources.PostalCodeSearch;
 
 @Service
-public class FreightCalculus {
+public class FreightBudgetCalculus {
 		
-	public FreightCalculus() {
+	public FreightBudgetCalculus() {
 	}
 	
 	public void calculateDeliveryEstimated (Freight freightInput) {
@@ -43,6 +43,6 @@ public class FreightCalculus {
 		orderPrice = (freightInput.getPound())*(1 - discount);
 		
 		freightInput.setPreco(orderPrice);
-		freightInput.setPrazo(deadlineDays);
+		freightInput.setDeadlineDays(deadlineDays);
 	}
 }

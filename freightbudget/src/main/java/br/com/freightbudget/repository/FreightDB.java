@@ -1,4 +1,4 @@
-package br.com.freightbudget.datasources;
+package br.com.freightbudget.repository;
 
 import java.util.Date;
 
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import br.com.freightbudget.basic.Freight;
 
 @Entity
 @Table(name = "fretes")
@@ -24,7 +26,7 @@ public class FreightDB {
 	@Column(name = "nome_destinatario")
 	private String name;
 	@Column(name = "valor_total_frete")
-	private double preco;
+	private double price;
 	@Column(name = "data_prevista_entrega")
 	private String estimatedDate;
 	@Column(name = "data_consulta", columnDefinition = "datetime")
@@ -35,7 +37,7 @@ public class FreightDB {
 		this.postalCodeOrigin = freight.getPostalCodeOrigin();
 		this.postalCodeDestin = freight.getPostalCodeDestin();
 		this.name = freight.getName();
-		this.preco = freight.getPreco();
+		this.price = freight.getPrice();
 		this.estimatedDate = freight.getDelliveryEstimated();
 		this.timestamp = freight.getTimestamp();
 	}

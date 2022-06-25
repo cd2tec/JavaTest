@@ -1,15 +1,8 @@
-package br.com.freightbudget.datasources;
+package br.com.freightbudget.basic;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 public class Freight {
 	private int id;
@@ -17,8 +10,8 @@ public class Freight {
 	private String postalCodeOrigin;
 	private String postalCodeDestin;
 	private String name;
-	private double preco;
-	private int prazo;
+	private double price;
+	private int deadlineDays;
 	private Date timestamp;
 
 	public Freight(double pound, String postalCodeOrigin, String postalCodeDestin, String name) {
@@ -27,8 +20,8 @@ public class Freight {
 		this.postalCodeOrigin = postalCodeOrigin;
 		this.postalCodeDestin = postalCodeDestin;
 		this.name = name;
-		this.preco = 0;
-		this.prazo = 0;
+		this.price = 0;
+		this.deadlineDays = 0;
 		this.timestamp = new Date ();
 	}	
 
@@ -68,20 +61,20 @@ public class Freight {
 		this.name = name;
 	}
 
-	public double getPreco() {
-		return preco;
+	public double getPrice() {
+		return price;
 	}
 	
-	public void setPreco(double preco) {
-		this.preco = preco;
+	public void setPreco(double price) {
+		this.price = price;
 	}
 
-	public int getPrazo() {
-		return prazo;
+	public int getDeadlineDays() {
+		return deadlineDays;
 	}
 
-	public void setPrazo(int prazo) {
-		this.prazo = prazo;
+	public void setDeadlineDays(int deadlineDays) {
+		this.deadlineDays = deadlineDays;
 	}
 
 	public Date getTimestamp() {
@@ -101,7 +94,7 @@ public class Freight {
 		SimpleDateFormat dateFormat = new SimpleDateFormat ("dd/MM/yyyy");
 		Calendar cal = Calendar.getInstance(); 
 		cal.setTime(this.timestamp);
-		cal.add(Calendar.DAY_OF_MONTH, this.prazo);
+		cal.add(Calendar.DAY_OF_MONTH, this.deadlineDays);
 		return dateFormat.format(cal.getTime());
 	}
 
