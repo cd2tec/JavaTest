@@ -8,11 +8,11 @@
 		<version>2.7.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.alexanLO</groupId>
+	<groupId>com.sigabem</groupId>
 	<artifactId>sigabem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sigabem</name>
-	<description>Demo project for Javatest</description>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -36,11 +36,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>com.gtbr</groupId>
 			<artifactId>via-cep</artifactId>
 			<version>1.0.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<repositories>
