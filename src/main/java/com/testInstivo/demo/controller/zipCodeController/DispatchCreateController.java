@@ -1,7 +1,7 @@
 package com.testInstivo.demo.controller.zipCodeController;
 
 import com.testInstivo.demo.entites.Dispatch;
-import com.testInstivo.demo.service.zipCodeService.DispatchCreateService;
+import com.testInstivo.demo.service.dispatchService.DispatchCreateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
