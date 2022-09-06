@@ -10,17 +10,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class DispatchCreateService {
+public class DispatchStoreService {
 
     @Autowired
     DispatchFindService dispatchFindService;
 
-    public ResponseEntity create(Dispatch request) {
+    @Autowired
+    DispatchDiscountService dispatchDiscountService;
+
+
+    public ResponseEntity store(Dispatch request) {
         var dispatchSender = this.dispatchFindService.findViaCep(request.getZip_code_origin());
 
         var dispatchDestiny = this.dispatchFindService.findViaCep(request.getZip_code_destination());
 
-       
+        this.dispatchDiscountService.discount(dispatchSender, dispatchDestiny);
 
+
+        //return new ResponseEntity(responseDispatch, HttpStatus.ACCEPTED);
     }
 }
