@@ -10,14 +10,8 @@ import javax.persistence.Entity;
 @Setter
 public class ZipCode {
     String weight;
-    String zip_code;
+    String zip_code_origin;
     String zip_code_destination;
-    String addressee;
+    String name_destinatio;
 
-    public ZipCode(String weight, String zip_code, String zip_code_destination, String addressee) {
-        this.weight = weight;
-        this.zip_code = zip_code;
-        this.zip_code_destination = zip_code_destination;
-        this.addressee = addressee;
-    }
 }
