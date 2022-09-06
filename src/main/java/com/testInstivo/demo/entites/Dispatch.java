@@ -8,10 +8,9 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-public class ZipCode {
+public class Dispatch {
     String weight;
     String zip_code_origin;
     String zip_code_destination;
     String name_destinatio;
-
-}
+ }
