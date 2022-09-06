@@ -6,7 +6,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class DispatchFindService {
-    public DispatchDTO findViaCep(String ZipCode) {
+    public DispatchDTO findViaCep(Number ZipCode) {
         final String uri = "https://viacep.com.br/ws/" + ZipCode + "/json/";
 
         RestTemplate restTemplate = new RestTemplate();

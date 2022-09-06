@@ -3,6 +3,8 @@ package com.testInstivo.demo.service.dispatchService;
 import com.testInstivo.demo.DTO.DispatchDTO;
 import com.testInstivo.demo.entites.Dispatch;
 import com.testInstivo.demo.entites.ResponseDispatch;
+import com.testInstivo.demo.exception.ApiRequestException;
+import com.testInstivo.demo.repository.DispatchRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,16 +15,24 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @AllArgsConstructor
 public class DispatchStoreService {
+    final DispatchRepository dispatchRepository;
     final DispatchFindService dispatchFindService;
     final DispatchDiscountService dispatchDiscountService;
 
     public ResponseEntity store(Dispatch request) {
-        var dispatchSender = this.dispatchFindService.findViaCep(request.getZip_code_origin());
-        var dispatchDestiny = this.dispatchFindService.findViaCep(request.getZip_code_destination());
+        try {
 
-        var responseDispatch = this.dispatchDiscountService.discount(dispatchSender, dispatchDestiny, this.setValues(request));
+            var dispatchSender = this.dispatchFindService.findViaCep(request.getZip_code_origin());
+            var dispatchDestiny = this.dispatchFindService.findViaCep(request.getZip_code_destination());
 
-        return new ResponseEntity(responseDispatch, HttpStatus.ACCEPTED);
+            var responseDispatch = this.dispatchDiscountService.discount(dispatchSender, dispatchDestiny, this.setValues(request));
+
+            this.dispatchRepository.save(responseDispatch);
+            return new ResponseEntity(responseDispatch, HttpStatus.ACCEPTED);
+        } catch (IllegalStateException e) {
+            throw new ApiRequestException(e.getMessage());
+        }
+
     }
 
     protected ResponseDispatch setValues(Dispatch request) {

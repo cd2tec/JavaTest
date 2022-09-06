@@ -15,16 +15,17 @@ public class DispatchDiscountService {
 
     public ResponseDispatch discount(DispatchDTO dispatchSender, DispatchDTO dispatchDestiny, ResponseDispatch responseDispatch) {
 
-        if (dispatchSender.getLocalidade() != dispatchDestiny.getLocalidade()) {
-            return this.utils.noDiscount(responseDispatch);
-        }
-
         if (dispatchSender.getLocalidade().equals(dispatchDestiny.getLocalidade())) {
             return this.utils.discountLocation(responseDispatch);
         }
 
         if (dispatchSender.getDdd().equals(dispatchDestiny.getDdd())) {
+
             return this.utils.discountDDD(responseDispatch);
+        }
+
+        if (dispatchSender.getLocalidade() != dispatchDestiny.getLocalidade()) {
+            return this.utils.noDiscount(responseDispatch);
         }
 
         throw new ApiRequestException("Parece que temos uma falha interna :(");
