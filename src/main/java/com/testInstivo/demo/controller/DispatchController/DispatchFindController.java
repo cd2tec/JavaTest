@@ -50,9 +50,6 @@ public class DispatchFindController {
         return this.dispatchFindService.findByDeliveryDate(date);
     }
 
-//    @GetMapping(path = "expected_delivery_date")
-//    public ResponseEntity findByDeliveryDate(@RequestParam("date") String date) {
-//        return this.dispatchFindService.findByDeliveryDate(date);
-//    }
+
 }
 

@@ -39,7 +39,10 @@ public class Utils {
     }
 
     public Dispatch noDiscount(Dispatch request) {
+
         request.setExpectedDeliveryDate(this.setDateTime(10l));
+        request.setCostFreight(0);
+
         return request;
 
     }

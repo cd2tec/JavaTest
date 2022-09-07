@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -21,6 +18,7 @@ public class Dispatch {
     private Long id;
 
     @DecimalMin(value = "0.1", message = "Peso não pode estar vazio")
+    @NotNull(message = "Peso null")
     private Double weight;
     @Size(min = 8, message = "Cep deve ter 8 digitos")
     private String zipCodeOrigin;

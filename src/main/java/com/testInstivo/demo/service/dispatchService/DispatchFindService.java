@@ -43,7 +43,7 @@ public class DispatchFindService {
         var user = this.dispatchRepository.findByRecipientName(name);
 
         if(user.isEmpty()) {
-            throw new ApiRequestException("Nenhum item registrado com esse nome foi encontrado");
+            throw new ApiRequestException("Nenhum item registrado com esse nome foi encontrado: "+ name);
         }
 
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
