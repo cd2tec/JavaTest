@@ -21,16 +21,16 @@ public class DispatchStoreService {
 
     public ResponseEntity store(Dispatch request) {
         try {
-
             var dispatchSender = this.dispatchFindService.findViaCep(request.getZip_code_origin());
+
             var dispatchDestiny = this.dispatchFindService.findViaCep(request.getZip_code_destination());
 
             var responseDispatch = this.dispatchDiscountService.discount(dispatchSender, dispatchDestiny, this.setValues(request));
 
-            this.dispatchRepository.save(responseDispatch);
-            return new ResponseEntity(responseDispatch, HttpStatus.ACCEPTED);
+            var dispatchSave = dispatchRepository.save(responseDispatch);
+            return new ResponseEntity(dispatchSave, HttpStatus.CREATED);
         } catch (IllegalStateException e) {
-            throw new ApiRequestException(e.getMessage());
+            throw new IllegalStateException(e.getMessage());
         }
 
     }

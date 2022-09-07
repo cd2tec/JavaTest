@@ -1,22 +1,23 @@
 package com.testInstivo.demo.entites;
 
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
 public class Dispatch {
-    Double weight;
-    Number zip_code_origin;
-    Number zip_code_destination;
-    String recipient_name;
+    @DecimalMin(value = "0.1", message = "Peso não pode estar vazio")
+    private Double weight;
+    @Size(min = 8, message = "Cep deve ter 8 digitos")
+    private String zip_code_origin;
+    @Size(min = 8, message = "Cep deve ter 8 digitos")
+    private String zip_code_destination;
+    @NotBlank(message = "Nome do destinatário não pode estar vazio")
+    private String recipient_name;
 }

@@ -2,23 +2,25 @@ package com.testInstivo.demo.entites;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "tb_dispatch")
-public class ResponseDispatch {
+public class ResponseDispatch      {
     @Id
-    @SequenceGenerator(name = "tb_dispatch", sequenceName = "tb_dispatch", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb_dispatch")
+    @SequenceGenerator(name = "dispatch_sequence", sequenceName = "dispatch_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dispatch_sequence")
     private Long id;
 
-    long cost_freight;
-    String expected_delivery_date;
-    Number zip_code_origin;
-    Number zip_code_destination;
+    private Long cost_freight;
+    private String expected_delivery_date;
+    private String zip_code_origin;
+    private String zip_code_destination;
 
 
 }

@@ -20,7 +20,6 @@ public class DispatchDiscountService {
         }
 
         if (dispatchSender.getDdd().equals(dispatchDestiny.getDdd())) {
-
             return this.utils.discountDDD(responseDispatch);
         }
 

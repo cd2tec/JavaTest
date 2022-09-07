@@ -23,7 +23,7 @@ public class DispatchStoreController {
     DispatchStoreService dispatchStoreService;
 
     @PostMapping(path = "store")
-    public ResponseEntity Store(@RequestBody Dispatch request) {
+    public ResponseEntity Store(@Valid @RequestBody Dispatch request) {
         return this.dispatchStoreService.store(request);
     }
 
