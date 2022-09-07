@@ -1,16 +1,11 @@
 package com.testInstivo.demo.service.dispatchService;
 
-import com.testInstivo.demo.DTO.DispatchDTO;
 import com.testInstivo.demo.entites.Dispatch;
-import com.testInstivo.demo.entites.ResponseDispatch;
-import com.testInstivo.demo.exception.ApiRequestException;
 import com.testInstivo.demo.repository.DispatchRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @AllArgsConstructor
@@ -21,29 +16,19 @@ public class DispatchStoreService {
 
     public ResponseEntity store(Dispatch request) {
         try {
-            var dispatchSender = this.dispatchFindService.findViaCep(request.getZip_code_origin());
+            var dispatchSender = this.dispatchFindService.findViaCep(request.getZipCodeOrigin());
 
-            var dispatchDestiny = this.dispatchFindService.findViaCep(request.getZip_code_destination());
+            var dispatchDestiny = this.dispatchFindService.findViaCep(request.getZipCodeDestination());
 
-            var responseDispatch = this.dispatchDiscountService.discount(dispatchSender, dispatchDestiny, this.setValues(request));
+            var responseDispatch = this.dispatchDiscountService.discount(request, dispatchSender, dispatchDestiny);
 
-            var dispatchSave = dispatchRepository.save(responseDispatch);
-            return new ResponseEntity(dispatchSave, HttpStatus.CREATED);
+            var dispatchCreated = this.dispatchRepository.save(responseDispatch);
+            return new ResponseEntity(dispatchCreated, HttpStatus.CREATED);
         } catch (IllegalStateException e) {
             throw new IllegalStateException(e.getMessage());
         }
 
     }
 
-    protected ResponseDispatch setValues(Dispatch request) {
-        var responseDispatch = new ResponseDispatch();
 
-        responseDispatch.setCost_freight(Math.round(request.getWeight()));
-        responseDispatch.setZip_code_origin(request.getZip_code_origin());
-        responseDispatch.setZip_code_destination(request.getZip_code_destination());
-
-
-        return responseDispatch;
-
-    }
 }

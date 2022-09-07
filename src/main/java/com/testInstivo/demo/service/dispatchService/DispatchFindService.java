@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class DispatchFindService {
     @Autowired
-    DispatchRepository dispatchRepository;
+    private DispatchRepository dispatchRepository;
 
     public DispatchDTO findViaCep(String ZipCode) {
         try {
@@ -38,4 +38,68 @@ public class DispatchFindService {
         return new ResponseEntity<>(user.get(), HttpStatus.ACCEPTED);
 
     }
+
+    public ResponseEntity findByRecipientName(String name) {
+        var user = this.dispatchRepository.findByRecipientName(name);
+
+        if(user.isEmpty()) {
+            throw new ApiRequestException("Nenhum item registrado com esse nome foi encontrado");
+        }
+
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity findByWeight(Double weight) {
+        var listWeight = this.dispatchRepository.findByWeight(weight);
+
+        if(listWeight.isEmpty()) {
+            throw new ApiRequestException("Nenhum item foi encontrado com esse peso " + weight);
+        }
+
+        return new ResponseEntity<>(listWeight, HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity findByZipCodeOrigin(String zip_code) {
+        var list = this.dispatchRepository.findByZipCodeOrigin(zip_code);
+
+        if(list.isEmpty()) {
+            throw new ApiRequestException("Nenhum item foi encontrado com esse cep " + zip_code);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity findByZipCodeDestination(String zip_code) {
+        var list = this.dispatchRepository.findByZipCodeDestination(zip_code);
+
+        if(list.isEmpty()) {
+            throw new ApiRequestException("Nenhum item foi encontrado com esse cep " + zip_code);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity findByFreight(int weight) {
+        var list = this.dispatchRepository.findByCostFreight(weight);
+
+        if(list.isEmpty()) {
+            throw new ApiRequestException("Nenhum item com esse frete: " + weight+ " foi encontrado");
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity findByDeliveryDate(String date) {
+
+        var list = this.dispatchRepository.findByExpectedDeliveryDate(date);
+
+        if(list.isEmpty()) {
+            throw new ApiRequestException("Nenhum item foi encontrado nessa data: " + date);
+        }
+
+        return new ResponseEntity<>(list, HttpStatus.ACCEPTED);
+    }
+
+
+
 }

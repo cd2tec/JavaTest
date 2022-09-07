@@ -20,7 +20,7 @@ import java.util.Map;
 public class DispatchStoreController {
 
     @Autowired
-    DispatchStoreService dispatchStoreService;
+    private DispatchStoreService dispatchStoreService;
 
     @PostMapping(path = "store")
     public ResponseEntity Store(@Valid @RequestBody Dispatch request) {

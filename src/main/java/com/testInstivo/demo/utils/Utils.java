@@ -1,6 +1,6 @@
 package com.testInstivo.demo.utils;
 
-import com.testInstivo.demo.entites.ResponseDispatch;
+import com.testInstivo.demo.entites.Dispatch;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -11,35 +11,36 @@ public class Utils {
 
     protected String setDateTime(Long d) {
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
         return LocalDate.now().plusDays(d).format(formatterDate);
 
     }
 
-    public ResponseDispatch discountDDD(ResponseDispatch responseDispatch) {
-        var freight = responseDispatch.getCost_freight() / 2;
+    public Dispatch discountDDD(Dispatch request) {
+        var freight = Math.toIntExact(Math.round(request.getWeight() / 2));
 
-        responseDispatch.setCost_freight(freight);
-        responseDispatch.setExpected_delivery_date(this.setDateTime(1l));
+        request.setCostFreight(freight);
+        request.setExpectedDeliveryDate(this.setDateTime(1l));
 
-        return responseDispatch;
+        return request;
 
 
     }
 
 
-    public ResponseDispatch discountLocation(ResponseDispatch responseDispatch) {
-        var freight = responseDispatch.getCost_freight() / 4;
+    public Dispatch discountLocation(Dispatch request) {
+        var freight = Math.toIntExact(Math.round(request.getWeight() / 4));
 
-        responseDispatch.setCost_freight(freight);
-        responseDispatch.setExpected_delivery_date(this.setDateTime(3l));
+        request.setCostFreight(freight);
+        request.setExpectedDeliveryDate(this.setDateTime(3l));
 
-        return responseDispatch;
+        return request;
 
     }
 
-    public ResponseDispatch noDiscount(ResponseDispatch responseDispatch) {
-        responseDispatch.setExpected_delivery_date(this.setDateTime(10l));
-        return responseDispatch;
+    public Dispatch noDiscount(Dispatch request) {
+        request.setExpectedDeliveryDate(this.setDateTime(10l));
+        return request;
 
     }
 }
