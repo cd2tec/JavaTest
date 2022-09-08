@@ -19,13 +19,14 @@ Mudei alguns valores de entrada que foram propostos
 
 Seguindo o principio da responsabilidade única, DispatchStoreController cuida da criação e DispatchFindController da busca, são os únicos controladores
 
-No DispatchStoreController tem a busca isolda dos ceps, com try catch, caso não encontre e desconto.
+No DispatchStoreController tem a busca isolada dos ceps, com try catch, caso não encontre e desconto.
 
 Implementação do desconto com ddd, localidade, peso da encomenda e dia previsto para entregar.
 
 Todos os testes passaram com exceção do shouldFindRecipientName no DispatchFindControllerTest, que por algum motivo</br>
 que não consegui resolver, fazia o registr no banco, mas não me retornava ele
-  
+
+Busca por nome, id, peso, data prevista para entregar, cep de origem, cep de destino, frete
  
  
 http://localhost:3333/swagger-ui/#/
