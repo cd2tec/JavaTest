@@ -24,7 +24,10 @@ Implementação do desconto com ddd, localidade, peso da encomenda e dia previst
 Todos os testes passaram com exceção do shouldFindRecipientName no DispatchFindControllerTest, que por algum motivo</br>
 que não consegui resolver, fazia o registr no banco, mas não me retornava ele
   
+  
 http://localhost:3333/swagger-ui/#/
+
+Em src -> main -> resource -> aplication.properties, necessário colocar os dados do banco para rodar aplicação
 
   ```diff
 
@@ -40,6 +43,5 @@ http://localhost:3333/swagger-ui/#/
 ...
 
 
-Em src -> main -> resource -> aplication.properties, necessário colocar os dados do banco para rodar aplicação
- 
+  
  
