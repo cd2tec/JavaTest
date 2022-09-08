@@ -11,8 +11,8 @@ Mudei alguns valores de entrada que foram propostos
 	"zipCodeOrigin" -> "cepOrigem",
 	"zipCodeDestination" -> "cepDestino",
 	"recipientName" -> "nomeDestinatario",
-  "costFreight" -> "vlTotalFrete",
-  "expectedDeliveryDate" -> "dataPrevistaEntrega",
+  	"costFreight" -> "vlTotalFrete",
+  	"expectedDeliveryDate" -> "dataPrevistaEntrega",
 
 
 Seguindo o principio da responsabilidade única, DispatchStoreController cuida da criação e DispatchFindController da busca, são os únicos controladores
@@ -24,6 +24,8 @@ Implementação do desconto com ddd, localidade, peso da encomenda e dia previst
 Todos os testes passaram com exceção do shouldFindRecipientName no DispatchFindControllerTest, que por algum motivo</br>
 que não consegui resolver, fazia o registr no banco, mas não me retornava ele
   
+http://localhost:3333/swagger-ui/#/
+
   ```diff
 
 + POST /api/v1/dispatch/store
@@ -37,6 +39,5 @@ que não consegui resolver, fazia o registr no banco, mas não me retornava ele
  
 ...
 
-http://localhost:3333/swagger-ui/#/
-
+ 
  
