@@ -25,8 +25,7 @@ Todos os testes passaram com exceção do shouldFindRecipientName no DispatchFin
 que não consegui resolver, fazia o registr no banco, mas não me retornava ele
   
  
- <img src="tests.png" />
-  
+ 
 http://localhost:3333/swagger-ui/#/
 
 Em src -> main -> resource -> aplication.properties, necessário colocar os dados do banco para rodar aplicação
