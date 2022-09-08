@@ -3,6 +3,8 @@
 Api rest utilizando spring boot com postegresql, jpa hibernate, validation</br>
 swagger e cobertura de testes e2e, integration
 
+Tests passed: 41 of 41
+
 No repository usando o metodo findBy sem a necessidade de escrever manualmente a query e realizando todas as buscas.
 
 Mudei alguns valores de entrada que foram propostos
