@@ -39,5 +39,7 @@ http://localhost:3333/swagger-ui/#/
  
 ...
 
+
+Em src -> main -> resource -> aplication.properties, necessário colocar os dados do banco para rodar aplicação
  
  
