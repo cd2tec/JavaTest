@@ -24,6 +24,8 @@ Implementação do desconto com ddd, localidade, peso da encomenda e dia previst
 Todos os testes passaram com exceção do shouldFindRecipientName no DispatchFindControllerTest, que por algum motivo</br>
 que não consegui resolver, fazia o registr no banco, mas não me retornava ele
   
+ 
+ <img src="tests.png" />
   
 http://localhost:3333/swagger-ui/#/
 
