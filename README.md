@@ -1,42 +1,51 @@
 # Teste de seleção para vaga de Java
 
-## Faça um fork desse projeto e siga as instruções a seguir utilizando esse projeto.
+Api rest utilizando spring boot com postegresql, jpa hibernate, validation</br>
+swagger e cobertura de testes e2e, integration
 
-# Pré-requisitos
+Tests passed: 41 of 41
 
-Implementar apenas a API (Backend)
-Versão Java +8 (caso seja Java 8, verificar compatibilidade da sua IDE)
-Versão Spring Boot >= 2.4
-Banco de dados fica a seu critério (Sql, NoSql)
-Seu projeto deve obrigatoriamente ter as anotações: @Repository, @Entity e @Controller
-Documentação mínima da API (Swagger ou documento PDF)
+No repository usando o metodo findBy sem a necessidade de escrever manualmente a query e realizando todas as buscas.
 
-# Objetivo
-Implementar para empresa de transporte de cargas SigaBem o endpoint para o cálculo do preço do frete:
+Mudei alguns valores de entrada que foram propostos
 
-Você deve calcular o valor total do frete e a data prevista da entrega.
-
-Considerar regras para calcular o valor do frete:
- * CEPs com DDDs iguais tem 50% de desconto no valor do frete e entrega prevista de 1 dia
- * CEPs de estados iguais tem 75% de desconto no valor do frete e entrega prevista de 3 dias
- * CEPs de estados diferentes não deve ser aplicado o desconto no valor do frete e entrega prevista de 10 dias
- * O valor do frete é cobrado pelo peso da encomenda, o valor para cada KG é R$1,00
-
-Seu input de entrada deve ser “peso”, “cepOrigem”, “cepDestino” e “nomeDestinatario“
-
-Você utilizará a API gratuita de consulta de CEP abaixo: 
-Documentação da API: https://viacep.com.br/
-Exemplo do GET: https://viacep.com.br/ws/<CEP_A_CONSULTAR>/json/
-
-Endpoint pode ser público
-Response/Output deve possuir: “vlTotalFrete” e “dataPrevistaEntrega”, “cepOrigem” e “cepDestino”
-Deve ser persistido no banco os valores da cotação os valores consultados: “peso”, “cepOrigem”, “cepDestino”, “nomeDestinatario”, “vlTotalFrete”, “dataPrevistaEntrega” e “dataConsulta”
+	"weight" -> "peso",
+	"zipCodeOrigin" -> "cepOrigem",
+	"zipCodeDestination" -> "cepDestino",
+	"recipientName" -> "nomeDestinatario",
+  	"costFreight" -> "vlTotalFrete",
+  	"expectedDeliveryDate" -> "dataPrevistaEntrega",
 
 
+Seguindo o principio da responsabilidade única, DispatchStoreController cuida da criação e DispatchFindController da busca, são os únicos controladores
 
-# Critérios de avaliação:
- * Implementação das regras de negócios para o cálculo do frete
- * Boas práticas de programação, arquitetura  e padrões de projetos
+No DispatchStoreController tem a busca isolada dos ceps, com try catch, caso não encontre e desconto.
 
-# Entrega: 
- * Disponibilizar um link do repositório no GitHub e encaminhar para developer@cd2.com.br
+Implementação do desconto com ddd, localidade, peso da encomenda e dia previsto para entregar.
+
+Todos os testes passaram com exceção do shouldFindRecipientName no DispatchFindControllerTest, que por algum motivo</br>
+que não consegui resolver, fazia o registr no banco, mas não me retornava ele
+
+Busca por nome, id, peso, data prevista para entregar, cep de origem, cep de destino, frete
+ 
+ 
+http://localhost:3333/swagger-ui/#/
+
+Em src -> main -> resource -> aplication.properties, necessário colocar os dados do banco para rodar aplicação
+
+  ```diff
+
++ POST /api/v1/dispatch/store
+@@ GET /api/v1/dispatch/find_by_id @@
+@@ GET /api/v1/dispatch/find_by_recipient_name @@
+@@ GET /api/v1/dispatch/zip_code_origin @@
+@@ GET /api/v1/dispatch/zip_code_destination @@
+@@ GET /api/v1/dispatch/total_freight @@
+@@ GET /api/v1/dispatch/find_by_weight @@
+@@ GET  /api/v1/dispatch/expected_delivery_date @@
+ 
+...
+
+
+  
+ 
